@@ -8,10 +8,14 @@ set scrolloff=8
 set signcolumn=yes
 set colorcolumn=80
 set exrc 
+set timeoutlen=500
+
+" Tabs 
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
-set timeoutlen=500
+autocmd FileType python setlocal noexpandtab
+
 
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -54,6 +58,9 @@ Plug 'numToStr/Comment.nvim'
 
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 colorscheme neodark
@@ -66,5 +73,6 @@ vnoremap < <gv
 vnoremap > >gv
 
 inoremap jk <Esc>
+" tnoremap   <silent>   <C-:><C-n>:FloatermToggle<CR>   <C-\><C-n>:FloatermToggle<CR>
 
 lua require("romain")

@@ -2,6 +2,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local on_attach_func = function() 
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
+	vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
 	vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
 	vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {buffer=0})
@@ -62,3 +63,27 @@ require('gitsigns').setup {
 }
 
 require('Comment').setup()
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    show_end_of_line = true,
+    space_char_blankline = " ",
+}
+
+
+-- Term
+vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
+vim.keymap.set('n', '<leader>ft', '<cmd>FloatermNew<cr>')
+vim.keymap.set('n', '<leader>pt', '<cmd>FloatermNew python<cr>')
+vim.keymap.set('t', '<F12>', '<cmd>FloatermToggle<cr>')
+vim.keymap.set('t', '<c-x>', '<cmd>FloatermToggle<cr>')
+vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')
+vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')
+
+-- Splits
+vim.keymap.set('n', '<c-h>', '<c-w><c-h>')
+vim.keymap.set('n', '<c-l>', '<c-w><c-l>')
+vim.keymap.set('n', '<c-j>', '<c-w><c-j>')
+vim.keymap.set('n', '<c-k>', '<c-w><c-k>')
