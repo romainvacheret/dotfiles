@@ -1,5 +1,10 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local on_attach_func = function() 
+local on_attach_func = function(client, bufnr) 
+	local opts = { noremap = true, silent = true }
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
@@ -8,8 +13,18 @@ local on_attach_func = function()
 	vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {buffer=0})
 	vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, {buffer=0})
 	vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, {buffer=0})
-	vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', {buffer=0})
+	vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+	buf_set_keymap('n', '<leader>df', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+
 end
+
+-- Requirement for rep_string/live_grep: https://github.com/BurntSushi/ripgrep 
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').grep_string, { desc = '[S]earch [C]urrent word' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc= '[F]ind [F]ile' })
 
 -- TODO references
 require 'lspconfig'.gopls.setup{
@@ -72,11 +87,22 @@ require("indent_blankline").setup {
     space_char_blankline = " ",
 }
 
+pcall(require('telescope').load_extension, 'fzf')
+
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'onedark',
+    component_separators = '|',
+    section_separators = '',
+  },
+}
+
 
 -- Term
 vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
 vim.keymap.set('n', '<leader>ft', '<cmd>FloatermNew<cr>')
-vim.keymap.set('n', '<leader>pt', '<cmd>FloatermNew python<cr>')
+vim.keymap.set('n', '<leader>pt', '<cmd>FloatermNew python3<cr>')
 vim.keymap.set('t', '<F12>', '<cmd>FloatermToggle<cr>')
 vim.keymap.set('t', '<c-x>', '<cmd>FloatermToggle<cr>')
 vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')

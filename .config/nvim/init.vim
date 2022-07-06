@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Git
 Plug 'lewis6991/gitsigns.nvim'
@@ -60,14 +61,13 @@ Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 colorscheme neodark
 
 let mapleader = " " 
-nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
 
 vnoremap < <gv
 vnoremap > >gv
