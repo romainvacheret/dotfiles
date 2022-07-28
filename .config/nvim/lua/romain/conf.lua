@@ -7,26 +7,19 @@ local on_attach_func = function(client, bufnr)
 
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
-	vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
+	vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
 	vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
 	vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {buffer=0})
 	vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, {buffer=0})
 	vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, {buffer=0})
-	vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+	vim.keymap.set('n', "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
 	buf_set_keymap('n', '<leader>df', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
 	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-
 end
 
--- Requirement for rep_string/live_grep: https://github.com/BurntSushi/ripgrep 
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>sc', require('telescope.builtin').grep_string, { desc = '[S]earch [C]urrent word' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc= '[F]ind [F]ile' })
+pcall(require('telescope').load_extension, 'fzf')
 
--- TODO references
 require 'lspconfig'.gopls.setup{
 	capabilities = capabilites,
 	on_attach = on_attach_func,
@@ -87,7 +80,11 @@ require("indent_blankline").setup {
     space_char_blankline = " ",
 }
 
-pcall(require('telescope').load_extension, 'fzf')
+-- Hide default lsp text, would be a duplicate of lsp_lines
+vim.diagnostic.config({
+  virtual_text = false,
+})
+require('lsp_lines').setup()
 
 require('lualine').setup {
   options = {
@@ -97,19 +94,3 @@ require('lualine').setup {
     section_separators = '',
   },
 }
-
-
--- Term
-vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
-vim.keymap.set('n', '<leader>ft', '<cmd>FloatermNew<cr>')
-vim.keymap.set('n', '<leader>pt', '<cmd>FloatermNew python3<cr>')
-vim.keymap.set('t', '<F12>', '<cmd>FloatermToggle<cr>')
-vim.keymap.set('t', '<c-x>', '<cmd>FloatermToggle<cr>')
-vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')
-vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')
-
--- Splits
-vim.keymap.set('n', '<c-h>', '<c-w><c-h>')
-vim.keymap.set('n', '<c-l>', '<c-w><c-l>')
-vim.keymap.set('n', '<c-j>', '<c-w><c-j>')
-vim.keymap.set('n', '<c-k>', '<c-w><c-k>')
