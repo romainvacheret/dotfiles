@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-rhubarb'
 
     -- LSP & Auto complete
+    use 'williamboman/nvim-lsp-installer'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'

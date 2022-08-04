@@ -8,9 +8,7 @@ vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { d
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').grep_string, { desc = '[S]earch [C]urrent word' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc= '[F]ind [F]ile', })
-vim.keymap.set('n', 'nn', require('telescope.builtin').find_files, { desc= '[F]ind [F]ile' })
-vim.keymap.set('n', '<leader>n', require('telescope.builtin').find_files, { desc= '[F]ind [F]ile' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc= '[F]ind [F]ile' })
 
 -- Term
 vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')

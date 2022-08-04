@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/romain/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
     url = "https://github.com/mfussenegger/nvim-jdtls"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/Users/romain/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/romain/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
