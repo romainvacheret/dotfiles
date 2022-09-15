@@ -1,0 +1,109 @@
+{
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.snippetSuggestions": "top",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.cursorStyle": "line",
+    "editor.lineNumbers": "relative",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "on",
+    "editor.cursorSurroundingLines": 8,
+    "editor.stickyScroll.enabled": true,
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.minimap.enabled": false,
+    "editor.rulers":[{
+        "column": 80,
+        "color": "#514D4D"
+    }],
+
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+
+    "[html]": {
+        "editor.tabSize": 2
+    },
+
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "**/.idea": true,
+    },
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    },
+    
+    "diffEditor.ignoreTrimWhitespace": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+
+    "java.codeGeneration.toString.codeStyle": "STRING_BUILDER_CHAINED",
+
+    "sonarlint.ls.javaHome": "/Users/romain/.sdkman/candidates/java/17.0.4-oracle",
+    "sonarlint.rules": {
+        "java:S106": { // logger instead of sout
+            "level": "off"
+        }
+    },
+
+    // Note: setting leader key blocks the ident using "<" or ">" + "space"
+    // "vim.leader": "<space>",
+
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"],
+        }
+    ],
+
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["ctrl-d"],
+            "after": ["ctrl-d", "z", "z"],
+        },
+        {
+            "before": ["ctrl-u"],
+            "after": ["ctrl-u", "z", "z"],
+        },
+        {
+            "before": [" ", "f", "f"],
+            "commands": ["workbench.action.quickOpen"],
+        },
+        {
+            "before": [" ", "r"],
+            "commands": ["editor.action.rename"],
+        },
+        {
+            "before": [" ", "d", "l"],
+            "commands": ["workbench.actions.view.problems"]
+        },
+    ],
+
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<"],
+            "after": ["<", "g", "v"],
+            "when": " vim.mode == 'VisualLine'",
+        },
+        {
+            "before": [">"],
+            "after": [">", "g", "v"],
+            "when": " vim.mode == 'VisualLine'",
+        }
+    ],
+}
