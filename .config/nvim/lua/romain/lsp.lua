@@ -28,6 +28,13 @@ require('nvim-lsp-installer').setup {
     ensure_installed = lsp_servers,
 }
 
+for _, lsp_server  in ipairs(lsp_servers) do
+    require('lspconfig')[lsp_server].setup {
+        on_attach = on_attach_func,
+        capabilities = capabilities,
+    }
+end
+
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 local cmp = require('cmp')
