@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
 
     use  { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/nvim-treesitter-context'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
@@ -31,8 +32,6 @@ return require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
 
     use 'neovim/nvim-lspconfig'
-
-    use 'mfussenegger/nvim-jdtls'
 
     -- Color scheme
     use 'KeitaNakamura/neodark.vim'

@@ -2,6 +2,8 @@ vim.keymap.set("i", "jk", "<esc>", {noremap = true})
 vim.keymap.set('v', '<', '<gv', { noremap = true })
 vim.keymap.set('v', '>', '>gv', { noremap = true })
 vim.keymap.set('v', '<leader>a', '>gv', { noremap = true })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true})
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true})
 
 -- Requirement for rep_string/live_grep: https://github.com/BurntSushi/ripgrep 
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
