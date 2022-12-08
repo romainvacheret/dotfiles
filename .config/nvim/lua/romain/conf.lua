@@ -25,3 +25,5 @@ require('lualine').setup {
         section_separators = '',
     },
 }
+
+vim.o.updatetime = 250

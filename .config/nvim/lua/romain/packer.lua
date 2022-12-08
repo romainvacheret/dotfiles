@@ -11,7 +11,12 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use  { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-    use 'nvim-treesitter/nvim-treesitter'
+    use { 
+        'nvim-treesitter/nvim-treesitter',
+        run = function ()
+            pcall(require('nvim-treesitter.install').update { with_sync = true })
+        end
+    }
     use 'nvim-treesitter/nvim-treesitter-context'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -22,7 +27,6 @@ return require('packer').startup(function(use)
     use 'tpope/vim-rhubarb'
 
     -- LSP & Auto complete
-    use 'williamboman/nvim-lsp-installer'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
@@ -31,8 +35,16 @@ return require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
 
-    use 'neovim/nvim-lspconfig'
-
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            -- LSP server installation (replace nvim-lsp-installer)
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'j-hui/fidget.nvim',
+        }
+    }
+    
     -- Color scheme
     use 'KeitaNakamura/neodark.vim'
 
@@ -46,6 +58,8 @@ return require('packer').startup(function(use)
 
 
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+
+    use 'lervag/vimtex'
 
     if is_bootstrap then
         require('packer').sync()

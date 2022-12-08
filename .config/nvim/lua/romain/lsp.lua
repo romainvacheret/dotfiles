@@ -1,5 +1,6 @@
 local M = {}
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local on_attach_func = function(client, bufnr) 
     local opts = { noremap = true, silent = true }
     local function buf_set_keymap(...)
@@ -22,17 +23,27 @@ end
 M.on_attach_func = on_attach_func
 pcall(require('telescope').load_extension, 'fzf')
 
-local lsp_servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' }
+local lsp_servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' ,'tsserver', 'texlab' }
 
-require('nvim-lsp-installer').setup {
-    ensure_installed = lsp_servers,
+require('mason').setup()
+require('mason-lspconfig').setup {
+    -- No longer works with mason instead of nvim-lsp-installer?
+    ensure_installed = servers
 }
 
 for _, lsp_server  in ipairs(lsp_servers) do
+    -- if(lsp_server == "clangd") then
+    --     require('lspconfig')[lsp_server].setup {
+    --         cmd = { 'clangd', '--cross-file-rename' },
+    --         on_attach = on_attach_func,
+    --         capabilities = capabilities,
+    --     }
+    -- else
     require('lspconfig')[lsp_server].setup {
         on_attach = on_attach_func,
         capabilities = capabilities,
     }
+    -- end
 end
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
@@ -67,7 +78,7 @@ vim.diagnostic.config({
 require('lsp_lines').setup()
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'lua', 'c', 'rust', 'go', 'python' },
+    ensure_installed = { 'lua', 'c', 'rust', 'go', 'python', 'typescript' },
     highlight = { enable = true },
     indent = { enable = true },
     incremental_selection = { enable = true },
