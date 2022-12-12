@@ -1,0 +1,35 @@
+set scrolloff=8
+set relativenumber
+set nu
+set nohlsearch
+set hidden
+set incsearch
+
+" --- Remaps ---
+let mapleader = " "
+
+inoremap jk <Esc>
+
+
+vnoremap > >gv
+
+" Movements
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+
+" Actions
+nnoremap <leader>r :action RenameElement<CR>
+nnoremap <leader>dj :action GotoNextError<CR>
+nnoremap <leader>dk :action GotoPreviousError<CR>
+nnoremap <leader>df :action ShowErrorDescription<CR>
+
+nnoremap gi :action GoToImplementation<CR>
+nnoremap gD :action GoToDeclaration<CR>
+nnoremap <leader>gt :action GoToTest<CR>
+
+noremap <leader>ff :action SearchEverywhere<CR>
+nnoremap <leader>sg :action FindInPath<CR>
+
+noremap gc :action CommentByLineComment<CR>
