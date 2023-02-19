@@ -1,27 +1,48 @@
 [
 	{
 		"key": "ctrl+h",
-		"command": "workbench.action.focusLeftGroup",
+		"command": "workbench.action.focusLeftGroup"
 	},
 	{
 		"key": "ctrl+j",
-		"command": "workbench.action.focusBelowGroup",
+		"command": "workbench.action.focusBelowGroup"
 	},
 	{
 		"key": "ctrl+k",
-		"command": "workbench.action.focusAboveGroup",
+		"command": "workbench.action.focusAboveGroup"
 	},
 	{
 		"key": "ctrl+h",
-		"command": "workbench.action.focusLeftGroup",
+		"command": "workbench.action.focusLeftGroup"
 	},
 	{
 		"key": "ctrl+l",
-		"command": "workbench.action.focusRightGroup",
+		"command": "workbench.action.focusRightGroup"
 	},
 	{
 		"key": "shift+k",
 		"command": "editor.action.showHover",
+		"when": "editorTextFocus && vim.mode == 'Normal'"
+	},
+	{
+		"key": "ctrl+shift+o",
+		// "key": ["s", "i"],
+		"command": "editor.action.organizeImports",
+		"when": "editorTextFocus && vim.mode == 'Normal'"
+	},
+	{
+		"key": "ctrl+shift+a",
+		"command": "editor.action.sourceAction",
 		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+n",
+		"command": "selectNextCodeAction",
+		"when": "codeActionMenuVisible"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "selectPrevCodeAction",
+		"when": "codeActionMenuVisible"
 	}
 ]

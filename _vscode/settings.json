@@ -53,6 +53,7 @@
     },
 
     "java.codeGeneration.toString.codeStyle": "STRING_BUILDER_CHAINED",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:jni+resolve=off -javaagent:\"/Users/romain/.vscode/extensions/vscjava.vscode-lombok-1.0.1/server/lombok.jar\"",
 
     "sonarlint.ls.javaHome": "/Users/romain/.sdkman/candidates/java/17.0.4-oracle",
     "sonarlint.rules": {
@@ -94,16 +95,21 @@
         },
     ],
 
+    // "organize import
     "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": ["<"],
             "after": ["<", "g", "v"],
-            "when": " vim.mode == 'VisualLine'",
+            "when": " vim.mode == 'VisualLine'"
         },
         {
             "before": [">"],
             "after": [">", "g", "v"],
-            "when": " vim.mode == 'VisualLine'",
+            "when": " vim.mode == 'VisualLine'"
         }
     ],
+    "gitlens.currentLine.enabled": false,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
