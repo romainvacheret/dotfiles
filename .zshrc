@@ -21,9 +21,27 @@ ZSH_THEME="robbyrussell"
 plugins=(
     git
     sdk
+    docker
 )
 
+
+
 source $ZSH/oh-my-zsh.sh
+
+
+# --- miscellaneous --- 
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Must be after sourcing Oh My ZSH to override the existing alias
+alias ls=' exa --group-directories-first'
+
+# --- Perl ---
+PATH="/Users/romain/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/romain/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/romain/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/romain/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/romain/perl5"; export PERL_MM_OPT;
 
 # --- Sdkman ---
 
