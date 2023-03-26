@@ -47,6 +47,7 @@ return require('packer').startup(function(use)
     
     -- Color scheme
     use 'KeitaNakamura/neodark.vim'
+    use 'morhetz/gruvbox'
 
     -- Misc
     use 'numToStr/Comment.nvim'
@@ -60,6 +61,9 @@ return require('packer').startup(function(use)
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
     use 'lervag/vimtex'
+    use 'chrisbra/csv.vim'
+
+    use { "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } }
 
     if is_bootstrap then
         require('packer').sync()

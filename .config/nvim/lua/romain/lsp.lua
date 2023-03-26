@@ -10,7 +10,7 @@ local on_attach_func = function(client, bufnr)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer=0 })
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer=0 })
     vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { buffer=0 })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, { buffer=0 })
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer=0 })
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer=0 })
     vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, { buffer=0 })
@@ -105,3 +105,7 @@ require('treesitter-context').setup{
     mode = 'cursor',
     separator = nil,
 }
+
+-- TODO: Change icons by ASCII characters
+-- TODO: Set key bindings
+require("todo-comments").setup { }
