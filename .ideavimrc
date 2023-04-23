@@ -12,7 +12,6 @@ let mapleader = " "
 
 inoremap jk <Esc>
 
-
 vnoremap > >gv
 
 " Movements
@@ -22,6 +21,15 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 
 " Actions
+nnoremap <leader>=v :action SplitVertically<CR>
+nnoremap <leader>=h :action SplitHorizontally<CR>
+nnoremap <leader>=u :action Unsplit<CR>
+nnoremap <leader>=m :action MoveEditorToOppositeTabGroup<CR>
+nnoremap <Leader>=q :action CloseContent<CR>
+
+nnoremap gt :action NextTab<CR>
+nnoremap gT :action PreviousTab<CR>
+
 nnoremap <leader>ca :action Generate<CR>
 nnoremap <leader>r :action RenameElement<CR>
 nnoremap <leader>dj :action GotoNextError<CR>
@@ -31,7 +39,7 @@ nnoremap <leader>df :action ShowErrorDescription<CR>
 " In IntelliJ, goto declaration / goto definition are the same
 nnoremap gd :action GoToDeclaration<CR>
 nnoremap gi :action GoToImplementation<CR>
-nnoremap gt :action GotoTypeDeclaration<CR>
+nnoremap gg :action GotoTypeDeclaration<CR>
 nnoremap <leader>gt :action GoToTest<CR>
 
 noremap <leader>ff :action SearchEverywhere<CR>
