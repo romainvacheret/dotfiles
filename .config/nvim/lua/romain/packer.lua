@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim'
     use 'voldikss/vim-floaterm'
 
+    use 'christoomey/vim-tmux-navigator'
 
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
