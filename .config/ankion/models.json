@@ -1,0 +1,76 @@
+[
+    {
+        "name": "Spanish",
+        "deck": "langues::Español2",
+        "type": "Language",
+        "secret": "SPANISH_ID",
+        "statusColumn": "Estado",
+        "addedStatus": "Added",
+        "toAddStatus": "Not added",
+        "fields": [
+            {
+                "name": "Word",
+                "column": "Español",
+                "type": "value"
+            },
+            {
+                "name": "Traduction",
+                "column": "Inglés",
+                "type": "value"
+            },
+            {
+                "name": "Sentence",
+                "column": "Frase",
+                "type": "value"
+            },
+            { 
+                "name": "Context",
+                "column": "Fuente",
+                "type": "value"
+            },
+            {
+                "name": "Date",
+                "column": "Fecha",
+                "type": "convert_date",
+                "format": "%d-%m-%y"
+            }
+        ]
+    },
+    {
+        "name": "English",
+        "deck": "langues::English2",
+        "type": "Language",
+        "secret": "ENGLISH_ID",
+        "statusColumn": "State",
+        "addedStatus": "Added",
+        "toAddStatus": "Not added",
+        "fields": [
+            {
+                "name": "Word",
+                "column": "English",
+                "type": "value"
+            },
+            {
+                "name": "Traduction",
+                "column": "Traduction",
+                "type": "value"
+            },
+            {
+                "name": "Sentence",
+                "column": "Sentence",
+                "type": "value"
+            },
+            { 
+                "name": "Context",
+                "column": "Source",
+                "type": "value"
+            },
+            {
+                "name": "Date",
+                "column": "Date",
+                "type": "convert_date",
+                "format": "%d-%m-%y"
+            }
+        ]
+    }
+]
