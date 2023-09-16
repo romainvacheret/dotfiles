@@ -1,1 +1,7 @@
 *.DS_STORE
+
+.config/darktable
+.config/gtk-2.0
+.config/iterm2
+.config/ankion/secrets.json
+.config/nvim/plugin/packer_compiled.lua

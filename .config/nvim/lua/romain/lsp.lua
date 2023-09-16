@@ -1,3 +1,4 @@
+-- TODO: look at lsp-zero once the v3 is the default branch
 local M = {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -12,6 +13,7 @@ local on_attach_func = function(client, bufnr)
     vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
     vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, { buffer=0 })
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer=0 })
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action )
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer=0 })
     vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, { buffer=0 })
     vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, { buffer=0 })
@@ -23,7 +25,7 @@ end
 M.on_attach_func = on_attach_func
 pcall(require('telescope').load_extension, 'fzf')
 
-local lsp_servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' ,'tsserver', 'texlab' }
+local lsp_servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' ,'tsserver', 'texlab', 'ocamllsp' }
 
 require('mason').setup()
 require('mason-lspconfig').setup {
@@ -76,35 +78,6 @@ vim.diagnostic.config({
     virtual_text = false,
 })
 require('lsp_lines').setup()
-
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'lua', 'c', 'rust', 'go', 'python', 'typescript' },
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = { enable = true },
-}
-
-require('treesitter-context').setup{
-    enable = true,
-    max_lines = 0,
-    trim_scope = 'outer',
-    patterns = {
-        default = {
-            'class',
-            'function',
-            'method',
-            'for',
-            'while',
-            'if',
-            'switch',
-            'case',
-        },
-    },
-
-    zindex = 20,
-    mode = 'cursor',
-    separator = nil,
-}
 
 -- TODO: Change icons by ASCII characters
 -- TODO: Set key bindings

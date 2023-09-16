@@ -1,8 +1,4 @@
-require('romain.packer')
-require('romain.settings')
-require('romain.conf')
-require('romain.lsp')
-require('romain.remap')
+require('romain')
 
 vim.cmd([[
     autocmd!
