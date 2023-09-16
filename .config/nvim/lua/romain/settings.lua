@@ -31,5 +31,3 @@ vim.opt.listchars:append("eol:↴")
 -- Color scheme
 -- vim.cmd('colorscheme neodark')
 vim.cmd('colorscheme gruvbox')
-
--- Misc

@@ -31,15 +31,6 @@ vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>Y', '"+Y')
 
--- Term
-vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
-vim.keymap.set('n', '<leader>ft', '<cmd>FloatermNew<cr>')
-vim.keymap.set('n', '<leader>pt', '<cmd>FloatermNew python3<cr>')
-vim.keymap.set('t', '<F12>', '<cmd>FloatermToggle<cr>')
-vim.keymap.set('t', '<c-x>', '<cmd>FloatermToggle<cr>')
-vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')
-vim.keymap.set('t', '<c-j>', '<cmd>FloatermPrev<cr>')
-
 -- Splits
 vim.keymap.set('n', '<c-h>', '<c-w><c-h>')
 vim.keymap.set('n', '<c-l>', '<c-w><c-l>')
