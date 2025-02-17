@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
     
     -- Color scheme
     use 'KeitaNakamura/neodark.vim'
-    use 'morhetz/gruvbox'
+    use 'ellisonleao/gruvbox.nvim'
 
     -- Misc
     use 'numToStr/Comment.nvim'
