@@ -25,7 +25,7 @@ end
 M.on_attach_func = on_attach_func
 pcall(require('telescope').load_extension, 'fzf')
 
-local lsp_servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' ,'tsserver', 'texlab', 'ocamllsp' }
+local lsp_servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' ,'ts_ls', 'texlab', 'ocamllsp' }
 
 require('mason').setup()
 require('mason-lspconfig').setup {
