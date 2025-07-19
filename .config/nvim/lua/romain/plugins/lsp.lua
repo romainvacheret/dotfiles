@@ -28,10 +28,12 @@ return {
                 map('gr', builtin.lsp_references, '[G]o to [R]eference')
                 map('gi', builtin.lsp_implementations, '[G]o to [I]mplementation]')
                 map('gD', builtin.lsp_type_definitions, '[G]o to Type [Definition]')
-                -- map('<leader>ca', vim.lsp.buf.code_action )
-                -- map('<leader>r', vim.lsp.buf.rename, { buffer=0 })
-                map('<leader>dj', vim.diagnostic.goto_next, 'Next [D]iagnostic')
-                map('<leader>dk', vim.diagnostic.goto_prev, 'Previous [D]iagnostic')
+                map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+                map('<leader>r', vim.lsp.buf.rename, '[R]ename')
+                map('<leader>dk', vim.diagnostic.goto_next, 'Next [D]iagnostic')
+                map('<leader>dj', vim.diagnostic.goto_prev, 'Previous [D]iagnostic')
+                map('<leader>do', vim.diagnostic.setloclist, '[D]iagnostic [O]pen quickfix list')
+
             end
         })
 
@@ -56,6 +58,7 @@ return {
                 'gopls',
                 'texlab',
                 'ts_ls',
+                'rust_analyzer',
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -94,12 +97,14 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end,
             },
-            -- mapping = cmp.mapping.preset.insert({
-            --     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-            --     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-            --     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-            --     ["<C-Space>"] = cmp.mapping.complete(),
-            -- }),
+            mapping = cmp.mapping.preset.insert({
+                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- additional mapping
+                ['<C-e>'] = cmp.mapping.abort(),
+                ["<C-Space>"] = cmp.mapping.complete(),
+            }),
             sources = cmp.config.sources({
                 -- { name = "copilot", group_index = 2 },
                 { name = 'nvim_lsp' },
