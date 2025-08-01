@@ -98,28 +98,24 @@ for vt in range(1, 8):
 
 
 groups = [Group(i) for i in "123456789"]
+# Set the matching keys for AZERTY layout
+groups_values = ["ampersand", "eacute", "quotedbl", "apostrophe", "parenleft", "minus", "egrave", "underscore", "ccedilla"]
 
-for i in groups:
+for i, key in zip(groups, groups_values):
     keys.extend(
         [
-            # mod + group number = switch to group
             Key(
                 [mod],
-                i.name,
+                key,
                 lazy.group[i.name].toscreen(),
                 desc=f"Switch to group {i.name}",
             ),
-            # mod + shift + group number = switch to & move focused window to group
             Key(
                 [mod, "shift"],
-                i.name,
+                key,
                 lazy.window.togroup(i.name, switch_group=True),
                 desc=f"Switch to & move focused window to group {i.name}",
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod + shift + group number = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
@@ -149,7 +145,7 @@ extension_defaults = widget_defaults.copy()
 logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
