@@ -5,7 +5,7 @@ set nohlsearch
 set hidden
 set incsearch
 
-Plug 'preservim/nerdtree`
+set NERDTree
 
 " --- Remaps ---
 let mapleader = " "
@@ -14,13 +14,16 @@ inoremap jk <Esc>
 
 vnoremap > >gv
 
-" Movements
+" Movements between splits
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 
 " Actions
+nnoremap K :action QuickJavaDoc<CR>
+nnoremap <leader>jd :action GenerateJavadoc<CR>
+
 nnoremap <leader>=v :action SplitVertically<CR>
 nnoremap <leader>=h :action SplitHorizontally<CR>
 nnoremap <leader>=u :action Unsplit<CR>
@@ -32,28 +35,45 @@ nnoremap gT :action PreviousTab<CR>
 
 nnoremap <leader>ca :action Generate<CR>
 nnoremap <leader>r :action RenameElement<CR>
-nnoremap <leader>dj :action GotoNextError<CR>
-nnoremap <leader>dk :action GotoPreviousError<CR>
+nnoremap <leader>dk :action GotoNextError<CR>
+nnoremap <leader>dj :action GotoPreviousError<CR>
 nnoremap <leader>df :action ShowErrorDescription<CR>
 
 " In IntelliJ, goto declaration / goto definition are the same
-nnoremap gd :action GoToDeclaration<CR>
+nnoremap gD :action GoToDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
 nnoremap gi :action GoToImplementation<CR>
-nnoremap gg :action GotoTypeDeclaration<CR>
+nnoremap gv :action GotoTypeDeclaration<CR>
 nnoremap <leader>gt :action GoToTest<CR>
 
 noremap <leader>ff :action SearchEverywhere<CR>
 nnoremap <leader>sg :action FindInPath<CR>
-nnoremap <leader>sc :action FindUsages<CR>
+" If word is selected, will search that word
+" No longer applied only to normal mode to also apply to visual
+map <leader>sg :action FindInPath<CR>
+" Does not work
+" nnoremap <leader>sc :action FindWordAtCaret<CR>
 
-noremap gc :action CommentByLineComment<CR>
+noremap gcc :action CommentByLineComment<CR>
+
+nnoremap <leader>=r :action Run<CR>
+nnoremap <leader>=R :action RunClass<CR>
+nnoremap <leader>=c :action ChooseRunConfiguration<CR>
+nnoremap <leader>=d :action Debug<CR>
+nnoremap <leader>=D :action DebugClass<CR>
+nnoremap <leader>=s :action Stop<CR>
 
 nnoremap <leader>,b :action ToggleLineBreakpoint<CR>
-nnoremap <leader>,r :action Run<CR>
-nnoremap <leader>,c :action ChooseRunConfiguration<CR>
-nnoremap <leader>,d :action Debug<CR>
 nnoremap <leader>,n :action ActivateDebugToolWindow<CR>
 nnoremap <leader>,o :action OptimizeImports<CR>
 
 map <leader>t :NERDTree<CR>
 map <leader>T :NERDTreeToggle<CR>
+
+" --- Information ---
+" List of command names: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+" Track actions: with "IdeaVim: Track Action Ids" after cmd + shift + A
+" Resize tool window: ctrl + option + arrows
+" Go to last tool window:  f12 (+ fn)
+" Hide all tool windows:layout shift + cmd + f12 (+ fnj)
+
