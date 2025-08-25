@@ -24,17 +24,20 @@ plugins=(
     docker
 )
 
-
+bindkey '^[L' clear-screen
 
 source $ZSH/oh-my-zsh.sh
 
 
 # --- miscellaneous --- 
 
+[[ ! -r /Users/romain/.opam/opam-init/init.zsh ]] || \
+    source /Users/romain/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Must be after sourcing Oh My ZSH to override the existing alias
-alias ls=' exa --group-directories-first'
+alias ls='exa --group-directories-first'
 
 # --- Perl ---
 PATH="/Users/romain/perl5/bin${PATH:+:${PATH}}"; export PATH;
