@@ -8,6 +8,7 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
     'theHamsta/nvim-dap-virtual-text',
     'leoluz/nvim-dap-go',
+    'mrcjkb/rustaceanvim',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -72,6 +73,7 @@ return {
         'delve',
         'python',
         'js-debug-adapter',
+        'codelldb'
       },
     }
 

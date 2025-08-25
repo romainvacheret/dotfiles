@@ -59,6 +59,7 @@ return {
                 'texlab',
                 'ts_ls',
                 'rust_analyzer',
+                'marksman',
             },
             handlers = {
                 function(server_name) -- default handler (optional)
