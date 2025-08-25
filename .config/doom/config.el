@@ -2,6 +2,26 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+;;
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "~/Documents/vaults/notes")
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert))
+  :config
+  (org-roam-db-sync))
+
+;; (setq select-enable-clipboard nil)
+;; (evil-define-key 'insert 'global (kbd "jk") 'evil-normal-state)
+;;
+(require 'key-chord)
+(key-chord-mode t)
+(key-chord-define-global "jk" 'evil-normal-state)
+
+(setq mac-option-modifier nil)
+(setq ns-function-modifier 'meta)
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email

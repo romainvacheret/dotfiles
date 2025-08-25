@@ -3,6 +3,8 @@
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
+;;
+(package! key-chord)
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
