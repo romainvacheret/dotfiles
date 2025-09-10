@@ -21,8 +21,10 @@ ZSH_THEME="robbyrussell"
 plugins=(
     git
     sdk
-    docker
+    zsh-vi-mode
 )
+
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 bindkey '^[L' clear-screen
 
