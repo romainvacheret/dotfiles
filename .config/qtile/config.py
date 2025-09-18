@@ -25,15 +25,34 @@
 # SOFTWARE.
 
 import os
+from math import ceil
 
 import libqtile.resources
 from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.widget.battery import BatteryStatus, BatteryState
 
+from libqtile.utils import logger
+
+
+colours = [
+    ["#1f2329", "#1f2329"],  # Background
+    ["#dcdcdc", "#dcdcdc"],  # Foreground
+    ["#535965", "#535965"],  # Grey Colour
+    ["#e55561", "#e55561"],
+    ["#8ebd6b", "#8ebd6b"],
+    ["#e2b86b", "#e2b86b"],
+    ["#4fa6ed", "#4fa6ed"],
+    ["#bf68d9", "#bf68d9"],
+    ["#48b0bd", "#48b0bd"],
+]
 mod = "mod4"
 terminal = guess_terminal()
+
+# import subprocess
+# subprocess.run(['setxkbmap' 'fr'])
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -80,7 +99,10 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Key([mod], 'r', lazy.run_extension(DmenuRun(
+    # ))),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -119,9 +141,21 @@ for i, key in zip(groups, groups_values):
         ]
     )
 
+layout_params = {
+    'border_width': 4,
+    'margin': [6,6,6,6],  # N E S W gaps
+    'border_on_single': 1,
+    'margin_on_single': 1,
+    'border_focus': '#9ccfd8',
+    'border_normal': '#201B37',
+    'border_radius': 10
+}
+
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    # layout.Max(),
+    layout.Columns(**layout_params),
+    layout.Max(**layout_params),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -142,12 +176,31 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+class CustomBattery(widget.Battery):
+    def __init__(self, **config) -> None:
+        super().__init__(**config)
+
+    def build_string(self, status: BatteryStatus):
+        logger.warning(f'Percentage, {status.percent} {ceil(status.percent * 10)}')
+        is_plugged = status.state == BatteryState.CHARGING
+        is_full = status.state == BatteryState.FULL
+        # `status.percentage` is a float 
+        idx = 10 if is_full else ceil(status.percent * 10)
+        # Require Nerd Fonts
+        icons = [
+            ['󰂎', '󰁺', '󰁻', '󰁼', '󰁽', '󰁾', '󰁿', '󰂀', '󰂁', '󰂂', '󰁹'],
+            ['󰢟', '󰢜', '󰂆', '󰂇', '󰂈', '󰢝', '󰂉', '󰢞', '󰂊', '󰂋', '󰂅']
+        ]
+
+        return f'{icons[is_plugged][idx]}  {status.percent:2.0%}'
+
 logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
+                # widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
@@ -157,12 +210,31 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
+                # widget.TextBox("default config", name="default"),
                 widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                # # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # # widget.StatusNotifier(),
+                # widget.Systray(),
+                widget.KeyboardLayout(configured_keyboards=['fr']),
+                widget.Sep(
+                    foreground=colours[2],
+                    linewidth=1,
+                    padding=10),
+                CustomBattery(
+                    low_percentage=0.15,
+                    show_short_text=False,
+                    notify_below=15),
+                widget.Sep(
+                    foreground=colours[2],
+                    linewidth=1,
+                    padding=10),
+                widget.Clock(
+                    foreground=colours[8],
+                    format="󰃰 %H:%M - %d/%m/%Y"),
+                widget.Sep(
+                    foreground=colours[2],
+                    linewidth=1,
+                    padding=10),
                 widget.QuickExit(),
             ],
             24,
@@ -170,7 +242,8 @@ screens = [
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         background="#000000",
-        wallpaper=logo,
+        # wallpaper=logo,
+        wallpaper= "/home/romain/Pictures/wallpaper.jpg",
         wallpaper_mode="center",
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
