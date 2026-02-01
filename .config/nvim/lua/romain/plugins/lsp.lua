@@ -30,8 +30,9 @@ return {
                 map('gD', builtin.lsp_type_definitions, '[G]o to Type [Definition]')
                 map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
                 map('<leader>r', vim.lsp.buf.rename, '[R]ename')
-                map('<leader>dk', vim.diagnostic.goto_next, 'Next [D]iagnostic')
-                map('<leader>dj', vim.diagnostic.goto_prev, 'Previous [D]iagnostic')
+                map('<leader>dj', vim.diagnostic.goto_next, 'Next [D]iagnostic')
+                map('<leader>dk', vim.diagnostic.goto_prev, 'Previous [D]iagnostic')
+                map('<leader>dd', vim.diagnostic.open_float, 'Previous [D]iagnostic')
                 map('<leader>do', vim.diagnostic.setloclist, '[D]iagnostic [O]pen quickfix list')
 
             end
@@ -60,6 +61,7 @@ return {
                 'ts_ls',
                 'rust_analyzer',
                 'marksman',
+                'clangd'
             },
             handlers = {
                 function(server_name) -- default handler (optional)
