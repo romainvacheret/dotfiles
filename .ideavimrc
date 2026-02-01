@@ -35,9 +35,9 @@ nnoremap gT :action PreviousTab<CR>
 
 nnoremap <leader>ca :action Generate<CR>
 nnoremap <leader>r :action RenameElement<CR>
-nnoremap <leader>dk :action GotoNextError<CR>
-nnoremap <leader>dj :action GotoPreviousError<CR>
-nnoremap <leader>df :action ShowErrorDescription<CR>
+nnoremap <leader>dk :action GotoPreviousError<CR>
+nnoremap <leader>dj :action GotoNextError<CR>
+nnoremap <leader>dd :action ShowErrorDescription<CR>
 
 " In IntelliJ, goto declaration / goto definition are the same
 nnoremap gD :action GoToDeclaration<CR>
