@@ -3,7 +3,6 @@
 {
   home.packages = [
     pkgs.eza
-    pkgs.ghostty
     pkgs.lazygit
     pkgsUnstable.neovim
     pkgs.ripgrep
@@ -16,6 +15,11 @@
   home.file = {
     ".config/ghostty/config" = {
       source = ../.config/ghostty/config;
+      force = true;
+    };
+
+    ".config/nix/nix.conf" = {
+      source = ../.config/nix/nix.conf;
       force = true;
     };
 
